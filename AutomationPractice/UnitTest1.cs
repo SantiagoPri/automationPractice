@@ -7,7 +7,7 @@ using OpenQA.Selenium.Support.UI;
 namespace AutomationPractice
 {
     [TestClass]
-    public class Challenge2
+    public class UnitTest1
     {
         IWebDriver driver;
 
@@ -20,24 +20,26 @@ namespace AutomationPractice
         [TestMethod]
         public void TestMethod1()
         {
+
+
+
+
             driver.Url = "http://automationpractice.com/index.php?";
-            driver.FindElement(By.ClassName("header_user_info")).Click();
-            driver.FindElement(By.Id("email_create")).SendKeys("sprieto@belatrixsf.com");
-            driver.FindElement(By.XPath("//*[@id=\"SubmitCreate\"]")).Click();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            driver.FindElement(By.Id("id_gender1")).Click();
-            driver.FindElement(By.Id("customer_firstname")).SendKeys("P");
-            driver.FindElement(By.Id("customer_lastname")).SendKeys("Sherman");
-            driver.FindElement(By.Id("passwd")).SendKeys("password");
-            driver.FindElement(By.Id("address1")).SendKeys("Wallaby street");
-            driver.FindElement(By.Id("city")).SendKeys("Sidney");
-            new SelectElement(driver.FindElement(By.Id("id_state"))).SelectByValue("43");
-            driver.FindElement(By.Id("postcode")).SendKeys("70133");
-            driver.FindElement(By.Id("phone_mobile")).SendKeys("3158799523");
-            driver.FindElement(By.Id("submitAccount")).Click();
-            string verificacion = driver.FindElement(By.ClassName("info-account")).Text;
-            Assert.AreEqual("Welcome to your account. Here you can manage all of your personal information and orders.", verificacion);
-            driver.FindElement(By.ClassName("logout")).Click();
+            driver.FindElement(By.Id("contact-link")).Click();
+            new SelectElement(driver.FindElement(By.Id("id_contact"))).SelectByValue("2");
+            driver.FindElement(By.Id("email")).SendKeys("hola@mailinator.com");
+            driver.FindElement(By.Id("id_order")).SendKeys("1012252");
+
+            driver.FindElement(By.Id("message")).SendKeys("this is a test for automation");
+
+            driver.FindElement(By.Id("submitMessage")).Click();
+            string sucess = driver.FindElement(By.XPath("//*[@id=\"center_column\"]/p")).Text;
+
+
+
+
+
+            Assert.AreEqual("Your message has been successfully sent to our team.", sucess);
 
 
 
